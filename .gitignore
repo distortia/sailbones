@@ -100,6 +100,13 @@ npm-debug.log
 
 
 
+################################################
+# Sass cache
+#
+# Folder responsible for caching sass for 
+# quicker compilation
+################################################
+.sass-cache/*
 
 
 ################################################
