@@ -1,0 +1,12 @@
+<h2>Edit</h2>
+<br>
+<form action="/sandcastle/div/edit/{{div.id}}" method='post'>
+	<h4>Name</h4>
+	<input type="text" name="name" value="{{div.name}}" class="form-control">
+	<h4>Page</h4>
+	<input type="text" name="page" value="{{div.page}}" class="form-control">
+	<h4>Index</h4>
+	<input type="text" name="index" value="{{div.index}}" class="form-control">
+	<br>
+	<button type="submit">Save</button>
+</form>

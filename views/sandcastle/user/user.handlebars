@@ -1,0 +1,19 @@
+<div class="container">
+  <form action="/sandcastle/user/edit/{{user.id}}" method="post" class="form-edit col-md-6">
+    <h2 class="form-edit-heading">Editing {{{user.email}}}</h2>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" name="email" value="{{{user.email}}}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>isAdmin</label>
+      <input type="checkbox" name="isAdmin" class="form-control" {{#if user.isAdmin}}checked{{/if}}/>
+    </div>
+    <div class="form-group">
+      <label>canEdit
+        <input type="checkbox" name="canEdit" class="form-control" {{#if user.canEdit}}checked{{/if}}/>
+      </label>
+    </div>
+    <button type="submit" class="btn btn-large btn-primary">Save</button>
+  </form>
+</div>

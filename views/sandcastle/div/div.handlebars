@@ -1,0 +1,21 @@
+<h2>Divs</h2>
+<table border="3" style="width:100%">
+	<tr>
+		<td>Name</td>
+		<td>Page</td>
+		<td>Content</td>
+		<td>Index</td>
+		<td></td>
+		<td></td>
+	</tr>
+	{{#each divs}}
+	<tr>
+		<td>{{name}}</td>
+		<td>{{page}}</td>
+		<td>{{content}}</td>
+		<td>{{index}}</td>
+		<td><a href="/sandcastle/div/edit/{{id}}" type="button">Edit</a></td>
+		<td><a onclick="" type="button">Delete</a></td>
+	</tr>
+	{{/each}}
+</table>
