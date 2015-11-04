@@ -32,15 +32,20 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {view: 'homepage'},
+  'get /': 'IndexController.index',
+  'get /sandcastle/user/login' : 'IndexController.login',
+  'get /sandcastle/user/signup' : 'IndexController.signup',
+  'get /sandcastle/user/reset' : 'IndexController.reset',
   'get /sandcastle/div/design' : 'DivController.create',
   'post /sandcastle/div/design' : 'DivController.create_post',
   'get /sandcastle/div/div' : 'DivController.div',
   'get /sandcastle/div/edit/:id' : 'DivController.edit',
   'post /sandcastle/div/edit/:id' : 'DivController.edit_post',
+  'get /sandcastle/div/delete/:id' : 'DivController.delete_post',
   'get /sandcastle/user/users' : 'UserController.user',
   'get /sandcastle/user/edit/:id' : 'UserController.edit',
-  'post /sandcastle/user/edit/:id' : 'UserController.edit_post'
+  'post /sandcastle/user/edit/:id' : 'UserController.edit_post',
+  'get /sandcastle/user/delete/:id' : 'UserController.delete_post'
 
   /***************************************************************************
   *                                                                          *
