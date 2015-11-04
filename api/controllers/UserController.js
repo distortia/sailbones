@@ -35,9 +35,19 @@ module.exports = {
 				res.redirect('sandcastle/user/users');
 			})
 		});		
+	},
+
+	//After hitting delete, the user with the associated id is removed.  Using a get request for now... because I didn't want to create 
+	//a post request form or import the script.js file from sandcastle
+	delete_post: function(req, res){
+		User.findOne({id: req.params.id}).exec(function findOneCB(err, found){
+			if(err) throw err;
+			User.destroy(found.id).exec(function deleteCB(err){
+				if(err) throw err;
+				res.redirect('sandcastle/user/users');
+			})
+		});
 	}
-
-
 	
 };
 

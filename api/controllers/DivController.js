@@ -9,7 +9,7 @@ module.exports = {
 
 	//Go to the main div page, where all divs are located when a get request when a get request is routed
 	div: function(req, res){
-		Div.find().sort('index ASC').exec(function(err, div){
+		Div.find().sort('index DESC').exec(function(err, div){
 			res.view('sandcastle/div/div',{divs: div});
 		});
 	},
@@ -53,8 +53,18 @@ module.exports = {
 				res.view('sandcastle/div/design');
 			}
 		});
-	}
+	},
 
-	//Still need to add controller methods for deletion
+	//After hitting delete, the div with the associated id is removed.  Using a get request for now... because I didn't want to create 
+	//a post request form or import the script.js file from sandcastle
+	delete_post: function(req, res){
+		Div.findOne({id: req.params.id}).exec(function findOneCB(err, found){
+			if(err) throw err;
+			Div.destroy(found.id).exec(function deleteCB(err){
+				if(err) throw err;
+				res.redirect('sandcastle/div/div');
+			})
+		});
+	}
 };
 
