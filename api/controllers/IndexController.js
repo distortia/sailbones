@@ -33,17 +33,19 @@ module.exports = {
 	//Goes to the reset page via get request
 	reset: function(req,res){
 		res.view('sandcastle/user/reset');
-	},
-
-	//Password Reset random number generation for verification
-	function randomAuth(){
-		var text = "";
-	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-	    for( var i=0; i < 6; i++ )
-	        text += possible.charAt(Math.floor(Math.random() * possible.length));
-		return text;
 	}
 
 };
+
+
+//Password Reset random number generation for verification
+function randomAuth(){
+	var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 6; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+	return text;
+}
+
 

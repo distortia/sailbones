@@ -55,8 +55,7 @@ module.exports = {
 		});
 	},
 
-	//After hitting delete, the div with the associated id is removed.  Using a get request for now... because I didn't want to create 
-	//a post request form or import the script.js file from sandcastle
+	//After hitting delete, the div with the associated id is removed, using a post request
 	delete_post: function(req, res){
 		Div.findOne({id: req.params.id}).exec(function findOneCB(err, found){
 			if(err) throw err;
