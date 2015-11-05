@@ -41,11 +41,11 @@ module.exports.routes = {
   'get /sandcastle/div/div' : 'DivController.div',
   'get /sandcastle/div/edit/:id' : 'DivController.edit',
   'post /sandcastle/div/edit/:id' : 'DivController.edit_post',
-  'get /sandcastle/div/delete/:id' : 'DivController.delete_post',
+  'post /sandcastle/div/delete/:id' : 'DivController.delete_post',
   'get /sandcastle/user/users' : 'UserController.user',
   'get /sandcastle/user/edit/:id' : 'UserController.edit',
   'post /sandcastle/user/edit/:id' : 'UserController.edit_post',
-  'get /sandcastle/user/delete/:id' : 'UserController.delete_post'
+  'post /sandcastle/user/delete/:id' : 'UserController.delete_post'
 
   /***************************************************************************
   *                                                                          *
