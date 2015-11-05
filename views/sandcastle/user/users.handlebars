@@ -17,7 +17,7 @@
         <td>{{{this.isAdmin}}}</td>
         <td>{{{this.canEdit}}}</td>
         <td><a href="edit/{{this.id}}" type="button" class="btn btn-warning">Edit</a></td>
-        <td><a href="delete/{{this.id}}" type="button" class="btn btn-danger">Delete</a></td>
+        <td><input onclick="deleteUser(&quot;{{this.id}}&quot;)" type="button" value="Delete"></input></td>
       </tr>
     {{/each}}
     </each>

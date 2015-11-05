@@ -15,7 +15,7 @@
 		<td>{{content}}</td>
 		<td>{{index}}</td>
 		<td><a href="/sandcastle/div/edit/{{id}}" type="button">Edit</a></td>
-		<td><a href="/sandcastle/div/delete/{{id}}" type="button">Delete</a></td>
+		<td><input onclick="deleteDiv(&quot;{{id}}&quot;)" type="button" value="Delete"></input></td>
 	</tr>
 	{{/each}}
 </table>
