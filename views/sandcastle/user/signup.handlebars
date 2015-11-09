@@ -1,11 +1,14 @@
 <div class="container">
-  <form action="/signup" method="post" class="form-signin col-md-3">
+  <form action="/sandcastle/user/create" method="post" class="form-signin col-md-3">
     <h2 class="form-signin-heading">Sign Up!</h2>
     <div class="form-group">
       <input type="text" name="email" placeholder="Email address" class="form-control"/>
     </div>
     <div class="form-group">
       <input type="password" name="password" placeholder="Password" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <input type="password" name="confirm" placeholder="Password" class="form-control"/>
     </div>
     <button type="submit" class="btn btn-large btn-primary">Sign up</button>
   </form>
