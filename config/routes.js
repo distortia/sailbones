@@ -45,7 +45,10 @@ module.exports.routes = {
   'get /sandcastle/user/users' : 'UserController.user',
   'get /sandcastle/user/edit/:id' : 'UserController.edit',
   'post /sandcastle/user/edit/:id' : 'UserController.edit_post',
-  'post /sandcastle/user/delete/:id' : 'UserController.delete_post'
+  'post /sandcastle/user/create' : 'UserController.create_post',
+  'post /sandcastle/user/delete/:id' : 'UserController.delete_post',
+  'post /sandcastle/user/login' : 'SessionController.create',
+  'get /sandcastle/user/logout' : 'SessionController.destroy'
 
   /***************************************************************************
   *                                                                          *

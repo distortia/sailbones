@@ -15,6 +15,22 @@ module.exports = {
 		})
 	},
 
+	create_post: function(req, res, next){
+		User.create({email: req.body.email, password: req.body.password, confirm: req.body.confirm})
+		.exec(function createCB(err, created){
+			if(err){
+				console.log(err);
+				throw err;
+			}
+			else{
+				req.flash('UserMessage', 'User Created'); //Need to implement the flash on view layer
+				req.session.authenticated = true;
+				req.session.user = user;
+				res.redirect('/');
+			}
+		});
+	},
+
 	//Goes to the specific user's information edi page, when a get request is routed
 	edit: function(req,res){
 		User.findOne({id: req.params.id}).exec(function findOneCB(err, found){
