@@ -18,34 +18,38 @@
 
 
 module.exports.policies = {
+  //Allow all, in other words, if its not covered by the other controllers,
+  //then pass it through the 'flash' (allow all) policy
+  '*': 'flash',
 
-  /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions (`true` allows public     *
-  * access)                                                                  *
-  *                                                                          *
-  ***************************************************************************/
+  //Handles all Index controllers, other than the index, this checks if the user
+  //is logged off so it can access the signup, login and reset password pages
+  index: {
+    index: 'flash',
+    login: 'isLoggedOut',
+    signup: 'isLoggedOut',
+    reset: 'isLoggedOut'
+  },
 
-  // '*': true,
+  //Handles all of the Div controllers.  Users cannot edit any of the divs unless
+  //they have the 'canEdit' attribute set
+  div: {
+    div: 'canEdit',
+    edit: 'canEdit',
+    edit_post: 'canEdit',
+    create: 'canEdit',
+    create_post: 'canEdit',
+    delete_post: 'canEdit'
+  },
 
-  /***************************************************************************
-  *                                                                          *
-  * Here's an example of mapping some policies to run before a controller    *
-  * and its actions                                                          *
-  *                                                                          *
-  ***************************************************************************/
-	// RabbitController: {
+  //Handles all of the User controllers.  Unless a user is signing up, they cannot
+  //do anything in terms of editing users unless they are an admin
+  user: {
+    user: 'isAdmin',
+    create_post: 'flash',
+    edit: 'isAdmin',
+    edit_post: 'isAdmin',
+    delete_post: 'isAdmin'
+  },
 
-		// Apply the `false` policy as the default for all of RabbitController's actions
-		// (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-		// '*': false,
-
-		// For the action `nurture`, apply the 'isRabbitMother' policy
-		// (this overrides `false` above)
-		// nurture	: 'isRabbitMother',
-
-		// Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-		// before letting any users feed our rabbits
-		// feed : ['isNiceToAnimals', 'hasRabbitFood']
-	// }
 };
