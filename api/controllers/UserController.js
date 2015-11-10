@@ -23,9 +23,10 @@ module.exports = {
 				throw err;
 			}
 			else{
+				console.log(created);
 				req.flash('UserMessage', 'User Created'); //Need to implement the flash on view layer
 				req.session.authenticated = true;
-				req.session.user = user;
+				req.session.user = created;
 				res.redirect('/');
 			}
 		});
