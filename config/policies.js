@@ -52,4 +52,11 @@ module.exports.policies = {
     delete_post: 'isAdmin'
   },
 
+  //Handles all of the Session controllers.  If a user is logged out, they can log in, and
+  //if they are logged in, they can log out.
+  session: {
+    create: 'isLoggedOut',
+    destroy: 'isloggedIn'
+  },
+
 };
