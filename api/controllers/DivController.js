@@ -9,7 +9,7 @@ module.exports = {
 
 	//Go to the main div page, where all divs are located when a get request when a get request is routed
 	div: function(req, res){
-		Div.find().sort('index DESC').exec(function(err, div){
+		Div.find().sort({'index': 1}).exec(function(err, div){
 			res.view('sandcastle/div/div',{divs: div});
 		});
 	},

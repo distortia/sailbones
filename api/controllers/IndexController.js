@@ -9,7 +9,7 @@ module.exports = {
 	
 	//Gos to the home page and grabs the divs associated with the homepage, and passes other variable into the homepage as well
 	index: function(req,res){
-		Div.find({page: "/"}).sort('index DESC').exec(function(err, divs){
+		Div.find({page: "/"}).sort({'index': 1}).exec(function(err, divs){
 			if(err) throw err;
 			res.view('homepage', {
 				div: divs,
