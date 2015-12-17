@@ -8,12 +8,10 @@ Install [Ruby](http://rubyinstaller.org/)
 
 Run `gem install sass`
 
-Run `npm install bcryptjs`
-
-Run `npm install sails-postgresql`
+Run `npm install`
 
 Add a local.js in the `config` folder to create local Postgres connections
 
 Update your database config in `config\connections`, when deploying to a local/remote server
 
-To run the project type `sails lift`
+To run the project type `node app.js`

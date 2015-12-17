@@ -31,6 +31,7 @@ module.exports = {
 			found.index = req.body.index;
 			found.save(function(error){
 				if(error) throw err;
+				req.session.flash = {divMessage: 'Div Updated!'};
 				res.redirect('sandcastle/div/div');
 			})
 		});
@@ -44,13 +45,11 @@ module.exports = {
 
 	//After the user submits the form on the create page, save the information to its model and redirect the user, when a post request is routed
 	create_post: function(req, res){
-		Div.create({page: '/' + req.body.page, name: req.body.name + '-summernote', index: req.body.index})
-		.exec(function createCB(err, created){
-			if(err)
-				throw err;
+		Div.create({page: '/' + req.body.page, name: req.body.name + '-sandcastle', index: req.body.index}).exec(function createCB(err, created){
+			if(err) throw err;
 			else{
-				req.flash('divMessage', 'Div Created'); //Need to implement the flash on view layer
-				res.view('sandcastle/div/design');
+				req.session.flash = {divMessage: 'Div Created!'}; //Need to implement the flash on view layer
+				res.redirect('sandcastle/div/design');
 			}
 		});
 	},
@@ -61,8 +60,32 @@ module.exports = {
 			if(err) throw err;
 			Div.destroy(found.id).exec(function deleteCB(err){
 				if(err) throw err;
+				req.session.flash = {deleteMessage: 'Div Deleted'};
 				res.redirect('sandcastle/div/div');
 			})
+		});
+	},
+
+	//This corresponds to the CMS save button, when editing the site's text in different areas.  This updates the
+	//div's text or creates a new div if it doesn't exist
+	save: function(req, res, next){
+		Div.findOne({name: req.body.name}).exec(function findOneCB(err, found){
+			if(err) throw err;
+			if(found){
+				found.page = req.body.page;
+				found.name = req.body.name;
+				found.content = req.body.content;
+				found.save(function(error){
+					if(error) throw err;
+					next();
+				})
+			}
+			else{
+				Div.create({page: req.body.page, name: req.body.name, content: req.body.content}).exec(function createCB(err, created){
+					if(err) throw err;
+					else next();
+				});
+			}
 		});
 	}
 };

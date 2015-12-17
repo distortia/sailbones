@@ -15,13 +15,13 @@ module.exports = {
 	  		unique: true,
 	  		required: true
 	  	},
-	  	password: { 
-	  		type: 'string', 
+	  	password: {
+	  		type: 'string',
 	  		required: true
 	  	},
 	  	isAdmin: {
 	  		type: 'boolean',
-	  		defaultsTo : false
+	  		defaultsTo : true
 	  	},
 	  	canEdit: {
 	  		type: 'boolean',

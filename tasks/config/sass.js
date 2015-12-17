@@ -6,7 +6,7 @@ module.exports = function(grunt){
 				cwd: 'assets/styles',
 				src: ['importer.scss'],
 				dest: '.tmp/public/styles',
-				ext: ',css'
+				ext: '.css'
 			}]
 		}
 	});

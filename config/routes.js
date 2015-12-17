@@ -48,8 +48,13 @@ module.exports.routes = {
   'post /sandcastle/user/create' : 'UserController.create_post',
   'post /sandcastle/user/delete/:id' : 'UserController.delete_post',
   'post /sandcastle/user/login' : 'SessionController.create',
-  'get /sandcastle/user/logout' : 'SessionController.destroy'
-
+  'get /sandcastle/user/logout' : 'SessionController.destroy',
+  'put /save': 'DivController.save',
+  'post /send-email' : 'IndexController.mail',
+  'post /reset' : 'IndexController.reset_post',
+  'get /sandcastle/user/resetPassword/:email' : 'IndexController.reset_pw',
+  'post /sandcastle/user/resetPassword/:email' : 'IndexController.reset_pw_post'
+  
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

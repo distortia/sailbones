@@ -18,13 +18,9 @@ module.exports = {
 	create_post: function(req, res, next){
 		User.create({email: req.body.email, password: req.body.password, confirm: req.body.confirm})
 		.exec(function createCB(err, created){
-			if(err){
-				console.log(err);
-				throw err;
-			}
+			if(err) throw err;
 			else{
-				console.log(created);
-				req.flash('UserMessage', 'User Created'); //Need to implement the flash on view layer
+				req.session.flash = {UserMessage: 'User Created'}; //Need to implement the flash on view layer
 				req.session.authenticated = true;
 				req.session.user = created;
 				res.redirect('/');
@@ -49,6 +45,7 @@ module.exports = {
 			user.canEdit = (req.body.canEdit === 'on' ? true: false);
 			user.save(function(error){
 				if(error) throw err;
+				req.session.flash = {UserMessage: 'User Updated'};
 				res.redirect('sandcastle/user/users');
 			})
 		});		
@@ -60,6 +57,7 @@ module.exports = {
 			if(err) throw err;
 			User.destroy(found.id).exec(function deleteCB(err){
 				if(err) throw err;
+				req.session.flash = {UserMessage: 'User Deleted'};
 				res.redirect('sandcastle/user/users');
 			})
 		});

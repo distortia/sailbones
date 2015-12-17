@@ -12,48 +12,28 @@ module.exports = {
 	create: function(req, res, next) {
 		//Check if email or password exists
 		if (!req.body.email || !req.body.password) {
-			var usernamePasswordRequiredError = [{
-				name: 'usernamePasswordRequired',
-				message: 'You must enter both a username and a password.'
-			}];
-			req.session.flash = {
-				err: usernamePasswordRequiredError
-			}
+			req.session.flash = {usernamePasswordRequiredError: 'You must enter both a username and a password.'};
 			res.redirect('/sandcastle/user/login');
 			return;
 		}
-
 		User.findOneByEmail(req.body.email, function foundUser(err, user) {
 			if (err) return next(err);
 
 			if (!user) {
-				var noAccountError = [{
-					name: 'noAccount',
-					message: 'The email address' + req.body.email + ' was not found'
-				}];
-				req.session.flash = {
-					err: noAccountError
-				}
+				req.session.flash = {noAccountError: 'The email address' + req.body.email + ' was not found'};
 				res.redirect('/sandcastle/user/login');
 				return;
 			}
 			bcrypt.compare(req.body.password, user.password, function(err, valid) {
 				if (err) return next(err);
 				if (!valid) {
-					var usernamePasswordMismatchError = [{
-						name: 'usernamePasswordMismatch',
-						message: 'Invalid username and password combination'
-					}];
-					req.session.flash = {
-						err: usernamePasswordMismatchError
-					}
+					req.session.flash = {usernamePasswordMismatch: 'Invalid username and password combination'};
 					res.redirect('/sandcastle/user/login');
 					return;
 				}
 				//Authenticate User
 				req.session.authenticated = true;
 				req.session.user = user;
-
 				res.redirect('/');
 			});
 		});
