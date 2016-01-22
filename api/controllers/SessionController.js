@@ -12,24 +12,29 @@ module.exports = {
 	create: function(req, res, next) {
 		//Check if email or password exists
 		if (!req.body.email || !req.body.password) {
-			req.session.flash = {usernamePasswordRequiredError: 'You must enter both a username and a password.'};
+			req.session.flash = {UserLoginError: 'You must enter both a username and a password.'};
 			res.redirect('/sandcastle/user/login');
-			return;
+            return;
 		}
 		User.findOneByEmail(req.body.email, function foundUser(err, user) {
-			if (err) return next(err);
-
+			if (err){
+                sails.log.error(err);
+                return next(err);
+            }
 			if (!user) {
-				req.session.flash = {noAccountError: 'The email address' + req.body.email + ' was not found'};
+				req.session.flash = {UserLoginError: 'The email address ' + req.body.email + ' was not found'};
 				res.redirect('/sandcastle/user/login');
-				return;
+                return;
 			}
 			bcrypt.compare(req.body.password, user.password, function(err, valid) {
-				if (err) return next(err);
+				if (err){
+                    sails.log.error(err);
+                    return next(err);
+                }
 				if (!valid) {
-					req.session.flash = {usernamePasswordMismatch: 'Invalid username and password combination'};
+					req.session.flash = {UserLoginError: 'Invalid username and password combination'};
 					res.redirect('/sandcastle/user/login');
-					return;
+                    return;
 				}
 				//Authenticate User
 				req.session.authenticated = true;
@@ -47,7 +52,10 @@ module.exports = {
 				User.update(userId, {
 					online: false
 				}, function(err) {
-					if (err) return next(err);
+					if (err){
+                        sails.log.error(err);
+                        return next(err);
+                    }
 
 					// Inform other sockets (e.g. connected sockets that are subscribed) that the session for this user has ended.
 					User.publishUpdate(userId, {
@@ -68,7 +76,10 @@ module.exports = {
 				User.update(userId, {
 					online: false
 				}, function(err){
-					if (err) return next(err);
+					if (err){
+                        sails.log.error(err);
+                        return next(err);
+                    }
 				});
 				// Wipe out the session (log out)
 				req.session.destroy();
@@ -79,4 +90,3 @@ module.exports = {
 	}
 	
 };
-

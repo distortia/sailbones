@@ -15,13 +15,13 @@ module.exports = {
 	  		unique: true,
 	  		required: true
 	  	},
-	  	password: {
-	  		type: 'string',
+	  	password: { 
+	  		type: 'string', 
 	  		required: true
 	  	},
 	  	isAdmin: {
 	  		type: 'boolean',
-	  		defaultsTo : true
+	  		defaultsTo : false
 	  	},
 	  	canEdit: {
 	  		type: 'boolean',
@@ -37,10 +37,9 @@ module.exports = {
   	//password is not blank
   	beforeCreate: function(values, next) {
 		if (!values.password || values.password != values.confirm) {
-			console.log(values);
-			return next({
-				err: ["Password does not match password confirmation."]
-			});
+			return next(
+				{passwordMisMatch: "Password MisMatch"}
+			);
 		}
 		bcrypt.hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
 			if (err) return next(err);
