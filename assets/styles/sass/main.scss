@@ -1,5 +1,11 @@
 // Main Sass file
+@import "vendor/normalize";
+//@import "vendor/bourbon/bourbon";
+//@import "vendor/neat/neat";
+//@import "vendor/base/base";
+//@import "vendor/mdl/material-design-lite";
+@import "base/base";
+@import "components/components";
 
-@import "vendor/bourbon/bourbon";
-@import "vendor/neat/neat";
-@import "vendor/base/base";
+//Uncomment this if you want visual grids and neat debug stuff
+//@import "vendor/neat_settings";

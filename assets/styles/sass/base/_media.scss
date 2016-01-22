@@ -1,0 +1,9 @@
+// Media Queries and breakpoint
+$mobile-extra-small: min-width 20em; //200px
+$mobile-small:min-width 20em; // 320px
+$mobile-medium: min-width 30em; //480px
+$mobile-large: min-width 37.5em; // 600px
+$mobile-extra-large: min-width 48.063em; //769px
+$desktop: min-width 62em; //992px
+
+//Only when the viewport width is above 768px does the grid take affect, otherwise it remains collapsed vertically.

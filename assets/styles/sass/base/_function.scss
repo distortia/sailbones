@@ -1,0 +1,5 @@
+// All Sass functions
+
+@function divide-padding($percent, $magnitude){
+	@return ($percent / $magnitude);
+} 

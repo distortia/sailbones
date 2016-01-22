@@ -1,0 +1,15 @@
+.mdl-cell {
+  background: #bdbdbd;
+}
+
+.flash-error{
+    background: #F48FB1;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.flash-message{
+    @extend .flash-error;
+    background: #8C9EFF;
+    color: #fff;
+}
