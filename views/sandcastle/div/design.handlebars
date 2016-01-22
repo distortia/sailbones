@@ -1,11 +1,22 @@
-<h1>Create a Div</h2>
-<br>
-<form action="/sandcastle/div/design" method='post'>
-	<input type="text" name="name" placeholder="Name" class="form-control">
-	<br>
-	<input type="text" name="page" placeholder="Page - leave blank if home" class="form-control">
-	<br>
-	<input type="text" name="index" placeholder="Index" class="form-control">
-	<br>
-	<button type="submit">Create</button>
-</form>
+<section id="form-wrapper">
+    <div class="mdl-card mdl-shadow--2dp">
+        <form action="/sandcastle/div/design" method='post' id="form-card">
+            <h2>Create a Div</h2>
+            <div class="flash-error">{{session.flash.divError}}</div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="name" required>
+                <label class="mdl-textfield__label" for="name">Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="page">
+                <label class="mdl-textfield__label" for="page">Page - Leave Blank if home</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="index" pattern="\d+">
+                <label class="mdl-textfield__label" for="index">Index</label>
+                <span class="mdl-textfield__error">Please enter in a number</span>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Submit</button>
+        </form>
+    </div>
+</section>

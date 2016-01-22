@@ -1,12 +1,19 @@
-<h2>Edit</h2>
-<br>
-<form action="/sandcastle/div/edit/{{div.id}}" method='post'>
-	<h4>Name</h4>
-	<input type="text" name="name" value="{{div.name}}" class="form-control">
-	<h4>Page</h4>
-	<input type="text" name="page" value="{{div.page}}" class="form-control">
-	<h4>Index</h4>
-	<input type="text" name="index" value="{{div.index}}" class="form-control">
-	<br>
-	<button type="submit">Save</button>
-</form>
+<section id="form-wrapper">
+    <div class="mdl-card mdl-shadow--2dp">
+        <form action="/sandcastle/div/edit/{{div.id}}" method='post' id="form-card">
+            <h2>Edit</h2>
+            <div class="flash-error">{{session.flash.divError}}</div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="name" value="{{div.name}}" required>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="page" value="{{div.page}}">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="index" pattern="\d+" value="{{div.index}}">
+                <span class="mdl-textfield__error">Please enter in a number</span>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Update</button>
+        </form>
+    </div>
+</section>

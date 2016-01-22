@@ -1,10 +1,14 @@
-<div class="container">
-  <form action="/reset" method="post" class="form-edit col-md-6">
-    <h2 class="form-edit-heading">Reset Password</h2>
-    <div class="form-group">
-      <label>Please enter your email to recieve directions to reset your password</label>
-      <input type="text" name="email" placeholder="Enter your email" class="form-control"/>
+<section id="form-wrapper" >   	
+    <div class="mdl-card mdl-shadow--2dp">
+        <form action="/reset" method="post" id="form-card">
+            <h2>Reset Password</h2>
+            <div class="flash-error">{{session.flash.resetPasswordError}}</div>
+            <a>Please enter your email to recieve directions to reset your password</a>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" name="email" required>
+                <label class="mdl-textfield__label" for="email">Email</label>
+            </div>
+           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Reset Password</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-large btn-primary">Reset Password</button>
-  </form>
-</div>
+</section>

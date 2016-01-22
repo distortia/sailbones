@@ -1,21 +1,30 @@
-<h2>Divs</h2>
-<table border="3" style="width:100%">
-	<tr>
-		<td>Name</td>
-		<td>Page</td>
-		<td>Content</td>
-		<td>Index</td>
-		<td></td>
-		<td></td>
-	</tr>
-	{{#each divs}}
-	<tr>
-		<td>{{name}}</td>
-		<td>{{page}}</td>
-		<td>{{content}}</td>
-		<td>{{index}}</td>
-		<td><a href="/sandcastle/div/edit/{{id}}" type="button">Edit</a></td>
-		<td><input onclick="deleteDiv(&quot;{{id}}&quot;)" type="button" value="Delete"></input></td>
-	</tr>
-	{{/each}}
-</table>
+<section id="form-wrapper">
+    <div id="form-card">
+        <h2>Divs</h2>
+        <div class="flash-message">{{session.flash.divMessage}}</div>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="div-table">
+           <thead> 
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Page</td>
+                    <td class="mdl-data-table__cell--non-numeric">Index</td>
+                    <td class="mdl-data-table__cell--non-numeric">Name</td>
+                    <td class="mdl-data-table__cell--non-numeric">Content</td>
+                    <td class="mdl-data-table__cell--non-numeric"></td>
+                    <td class="mdl-data-table__cell--non-numeric"></td>
+                </tr>
+           </thead>
+           <tbody>
+                {{#each divs}}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric div-cell">{{page}}</td>
+                    <td class="mdl-data-table__cell--non-numeric div-cell">{{index}}</td>
+                    <td class="mdl-data-table__cell--non-numeric div-cell">{{name}}</td>
+                    <td class="mdl-data-table__cell--non-numeric div-cell">{{content}}</td>
+                    <td class="mdl-data-table__cell--non-numeric div-cell"><a href="/sandcastle/div/edit/{{id}}">Edit</a></td>
+                    <td class="mdl-data-table__cell--non-numeric div-cell"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="deleteDiv(&quot;{{id}}&quot;)" type="button">Delete</input></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
