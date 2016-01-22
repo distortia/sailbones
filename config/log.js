@@ -9,6 +9,31 @@
  * For more information on the Sails logger, check out:
  * http://sailsjs.org/#!/documentation/concepts/Logging
  */
+var winston = require('winston');
+
+var fs = require('fs');
+
+if(!fs.existsSync('./logs')){
+    fs.mkdirSync('./logs');
+}
+
+var logger = new winston.Logger({
+    transports: [
+        new(winston.transports.File)({
+            level: 'error',
+            filename: './logs/errors.log',
+            json: true,
+            timestamp: true,
+            colorize: false
+        }),
+        new (winston.transports.Console)({
+            level: 'debug',
+            colorize: true,
+            timestamp: false,
+            json: false
+        })
+    ],
+});
 
 module.exports.log = {
 
@@ -24,6 +49,6 @@ module.exports.log = {
   *                                                                          *
   ***************************************************************************/
 
-  // level: 'info'
-
+  custom: logger,
+  color: false
 };
