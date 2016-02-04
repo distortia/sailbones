@@ -198,3 +198,20 @@ analyze.click(function(){
 
   analyze.addClass("active");
 });
+
+input = $("[id$=question]");
+
+var submitFeedback = function() {
+	$.each(input, function(i){
+		key = $(input[i]); //assigns each div to the variable key
+		$.ajax({
+			type: "PUT",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			url: '/feedback',
+			data: {question:key.attr('name'), answer: key.val()},
+		}).done(
+			setTimeout(function(){
+				location.replace('/')}, 100));
+	});
+	// location.reload();
+};

@@ -53,7 +53,9 @@ module.exports.routes = {
   'post /send-email' : 'IndexController.mail',
   'post /reset' : 'IndexController.reset_post',
   'get /sandcastle/user/resetPassword/:email' : 'IndexController.reset_pw',
-  'post /sandcastle/user/resetPassword/:email' : 'IndexController.reset_pw_post'
+  'post /sandcastle/user/resetPassword/:email' : 'IndexController.reset_pw_post',
+  'get /feedback': 'IndexController.feedback',
+  'put /feedback': 'QuestionController.submitFeedback'
   
   /***************************************************************************
   *                                                                          *
