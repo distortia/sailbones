@@ -39,6 +39,11 @@ module.exports = {
 	reset_pw: function(req, res){
 		res.view('sandcastle/user/resetPassword', {email: req.params.email});
 	},
+    
+    //Goes to the give feedback form
+    feedback: function(req, res){
+        res.view('feedback/feedbackform');
+    },
 	
 	//Sends an email with a unique ID for the user to reset
 	reset_post: function(req, res){
