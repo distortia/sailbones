@@ -188,3 +188,21 @@ footer {
     @extend .contact-us-form;
     padding: 25px 45px 50px 45px;
 }
+
+#feedback-data-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+#response-wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.response{    
+    display: inherit;
+    margin: 10px;
+}

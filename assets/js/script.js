@@ -204,11 +204,12 @@ input = $("[id$=question]");
 var submitFeedback = function() {
 	$.each(input, function(i){
 		key = $(input[i]); //assigns each div to the variable key
+        var isNumeric = key.hasClass('numeric') ? true : false;
 		$.ajax({
 			type: "PUT",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			url: '/feedback',
-			data: {question:key.attr('name'), answer: key.val()},
+			data: {question:key.attr('name'), answer: key.val(), isNumeric:isNumeric},
 		}).done(
 			setTimeout(function(){
 				location.replace('/')}, 100));

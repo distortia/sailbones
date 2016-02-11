@@ -1,0 +1,25 @@
+<section id="feedback-data-wrapper">
+    <h1>Feedback</h1>
+    <div id="response-wrapper">
+        {{#if session.flash.questionError}}
+        <h3>{{session.flash.questionError}}</h3>
+        {{/if}}
+        {{#each questions}}
+        <div class="response">
+            <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title"><h4 class="mdl-card__title-text">{{this.question}}</h4></div>
+                <div class="mdl-card__supporting-text">
+                    {{#if this.isNumeric}}
+                        <h6>Average: {{this.average}}</h6>
+                    {{else}}
+                        {{#each this.answer}}
+                            <h6>{{this}}</h6>
+                        {{/each}}
+                    {{/if}}
+                    <h6>Responses: {{this.responses}}</h6>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>

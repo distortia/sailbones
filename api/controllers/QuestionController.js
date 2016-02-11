@@ -11,7 +11,7 @@ module.exports = {
     //of the feedback form to avoid race conditions when saving
     submitFeedback: function(req, res, next){
         Question.findOne({question: req.body.question}).exec(function findOneCB(err, found){
-            if(err) console.log(err);
+            if(err) unknownErrorLog(err, req, res);
             if(found){
                 found.answer.push(req.body.answer);
                 found.save(function(error){
@@ -20,14 +20,27 @@ module.exports = {
                 })
             }
             else{
-                Question.create({question: req.body.question, answer: req.body.answer}).exec(function createdCB(err, newQuestion){
+                Question.create({question: req.body.question, answer: req.body.answer, isNumeric: req.body.isNumeric}).exec(function createdCB(err, newQuestion){
                     if(err) unknownErrorLog(err, req, res);
                     next();
                 });
             }
                 
         });
+    },
+    
+    //Goes to the feedback data page and sends the feedback data to the view
+    feedbackData: function(req, res){
+        Question.find().exec(function(error, questions){
+            if(error) unknownErrorLog(error, req, res);
+            if(!questions || !questions.length){
+                req.session.flash = {questionError: 'No Feedback has been submitted'};
+            }
+            res.view('feedback/viewfeedback', {questions: questions});
+        })
     }
+    
+    
 };
 
 //Function to log unknown errors
