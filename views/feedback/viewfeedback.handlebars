@@ -6,7 +6,7 @@
         {{/if}}
         {{#each questions}}
         <div class="response">
-            <div class="mdl-card mdl-shadow--2dp">
+            <div class="response-card mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title"><h4 class="mdl-card__title-text">{{this.question}}</h4></div>
                 <div class="mdl-card__supporting-text">
                     {{#if this.isNumeric}}
@@ -16,7 +16,7 @@
                             <h6>{{this}}</h6>
                         {{/each}}
                     {{/if}}
-                    <h6>Responses: {{this.responses}}</h6>
+                    <h6><a>Responses: {{this.responses}}</a></h6>
                 </div>
             </div>
         </div>
