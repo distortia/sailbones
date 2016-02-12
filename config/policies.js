@@ -89,5 +89,10 @@ module.exports.policies = {
     create: 'isLoggedOut',
     destroy: 'isloggedIn'
   },
+    
+  question: {
+    submitFeedback: 'flash',
+    feedbackData: 'canEdit'
+  },    
 
 };

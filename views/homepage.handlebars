@@ -5,17 +5,17 @@
 		{{#if session.user.canEdit}}
 		<a href='/sandcastle/div/design'>Create</a><br>
 		<a href='/sandcastle/div/div'>Divs</a><br>
+        <a href='/viewfeedback'>View Given Feedback</a><br>
 		{{/if}}
 		{{#if session.user.isAdmin}}
 		<a href='/sandcastle/user/users'>Users</a><br>
 		{{/if}}
-		<a href='/sandcastle/user/logout'>Log off</a>
+		<a href='/sandcastle/user/logout'>Log off</a><br>
 	{{else}}
 		<a href='/sandcastle/user/login'>Login</a><br>
 		<a href='/sandcastle/user/signup'>Sign Up</a><br>
 		<a href='/sandcastle/user/reset'>Reset Password</a><br>
 	{{/if}}
     <a href='/feedback'>Feedback</a><br>
-    <a href='/viewfeedback'>View Given Feedback</a>
 </div>
 
