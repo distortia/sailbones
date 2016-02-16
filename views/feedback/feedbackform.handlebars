@@ -3,17 +3,31 @@
         <form action="JavaScript:submitFeedback()" id="form-card">
             <h2>Feedback</h2>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input numeric" type="text" name="Experience" required pattern="\d+" id="Expereience-question">
+                <input class="mdl-textfield__input numeric mulitpleChoice" type="text" name="Experience" required pattern="\d+" id="Expereience-question">
                 <label class="mdl-textfield__label" for="name">Rate Your Experience</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input numeric" type="text" name="Site Feedback" pattern="\d+" required id="sitefeedback-question">
+                <input class="mdl-textfield__input numeric mulitpleChoice" type="text" name="Site Feedback" pattern="\d+" required id="sitefeedback-question">
                 <label class="mdl-textfield__label" for="name">Rate the Site</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input text" type="text" name="General Comments" required id="comments-question">
                 <label class="mdl-textfield__label" for="name">Comments</label>
             </div>
+            <h6>How would you describe this Site</h6>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="describe-awesome-question">
+            <input checked class="mdl-radio__button mulitpleChoice" id="describe-awesome-question" name="How would you describe this Site" type="radio"
+               value="Awesome">
+            <span class="mdl-radio__label">Awesome</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="describe-alright-question">
+              <input class="mdl-radio__button mulitpleChoice" id="describe-alright-question" name="How would you describe this Site" type="radio" value="Alright I guess">
+            <span class="mdl-radio__label">Alright I guess</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="describe-bad-question">
+              <input class="mdl-radio__button mulitpleChoice" id="describe-bad-question" name="How would you describe this Site" type="radio" value="Lame As Fuck">
+              <span class="mdl-radio__label">Lame As Fuck</span>
+            </label>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Submit Feedback</button>
         </form>
     </div>
