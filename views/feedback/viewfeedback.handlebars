@@ -12,11 +12,23 @@
                     {{#if this.isNumeric}}
                         <h6>Average: {{this.average}}</h6>
                     {{else}}
-                        {{#each this.answer}}
-                            <h6>{{this}}</h6>
-                        {{/each}}
+                        {{#unless this.isMultipleChoice}}
+                            {{#each this.answer}}
+                                <h6>{{this}}</h6>
+                            {{/each}}
+                        {{/unless}}
                     {{/if}}
                     <h6><a>Responses: {{this.responses}}</a></h6>
+                    {{#if this.isMultipleChoice}}
+                        {{#each this.percentPerAnswer}}
+                            <h6>{{this}}% answered {{@key}}</h6>
+                            <div class="mdl-progress mdl-js-progress" style="width: 100%">
+                                <div class="progressbar bar bar1" style="width: {{this}}%;"></div>
+                                <div class="bufferbar bar bar2" style="width: 100%;"></div>
+                                <div class="auxbar bar bar3" style="width: 0%;"></div>
+                            </div>
+                        {{/each}}
+                    {{/if}}
                 </div>
             </div>
         </div>

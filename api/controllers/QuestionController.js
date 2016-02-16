@@ -20,7 +20,7 @@ module.exports = {
                 })
             }
             else{
-                Question.create({question: req.body.question, answer: req.body.answer, isNumeric: req.body.isNumeric}).exec(function createdCB(err, newQuestion){
+                Question.create({question: req.body.question, answer: req.body.answer, isNumeric: req.body.isNumeric, isMultipleChoice: req.body.isMultipleChoice}).exec(function createdCB(err, newQuestion){
                     if(err) unknownErrorLog(err, req, res);
                     next();
                 });
