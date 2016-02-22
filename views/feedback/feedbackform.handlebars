@@ -1,6 +1,6 @@
 <section id="form-wrapper">
     <div class="mdl-card mdl-shadow--2dp">
-        <form action="JavaScript:submitFeedback()" id="form-card">
+        <form action="JavaScript:checkReCaptcha('/feedback', 'POST')" id="form-card">
             <h2>Feedback</h2>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input numeric mulitpleChoice" type="text" name="Experience" required pattern="\d+" id="Expereience-question">
@@ -28,6 +28,9 @@
               <input class="mdl-radio__button mulitpleChoice" id="describe-bad-question" name="How would you describe this Site" type="radio" value="Lame As Fuck">
               <span class="mdl-radio__label">Lame As Fuck</span>
             </label>
+            
+            <div class="g-recaptcha" data-sitekey="6LeoexgTAAAAAEHp1CxcggPucH5j-lsKm84oVr91" style="transform:scale(0.77);transform-origin:0 0"></div>
+
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Submit Feedback</button>
         </form>
     </div>
