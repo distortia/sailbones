@@ -56,7 +56,8 @@ module.exports.routes = {
   'post /sandcastle/user/resetPassword/:email' : 'IndexController.reset_pw_post',
   'get /feedback': 'IndexController.feedback',
   'put /feedback': 'QuestionController.submitFeedback',
-  'get /viewfeedback': 'QuestionController.feedbackData'
+  'get /viewfeedback': 'QuestionController.feedbackData',
+  'post /checkReCaptcha' : 'SessionController.checkReCaptcha',
   
   /***************************************************************************
   *                                                                          *

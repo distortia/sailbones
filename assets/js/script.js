@@ -201,6 +201,42 @@ analyze.click(function(){
 
 input = $("[id$=question]");
 
+var genericErrorMessage = function(msg){
+	swal({  title: "Error",
+			text: msg,
+			type: "error",
+			showCancelButton: false,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Ok",
+			closeOnConfirm: true
+		}
+    );
+};
+
+var checkReCaptcha = function(){
+    var formData = $('form').serializeArray();
+    console.log(formData);
+    if(formData[formData.length - 1].name == 'g-recaptcha-response'){
+        $.ajax({
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            url: '/checkReCaptcha', //call controller method instead
+            data: {response:formData[formData.length - 1].value},
+            success: function(response){
+                if(response.error){
+                    genericErrorMessage(response.error);
+                    return;
+                }
+                submitFeedback(response);
+            },
+            error: function(xhr, status, error){
+                genericErrorMessage(xhr.text);
+            }
+        })
+    }
+    
+};
+
 var submitFeedback = function() {
 	$.each(input, function(i){
 		key = $(input[i]); //assigns each div to the variable key
