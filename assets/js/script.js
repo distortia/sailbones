@@ -259,3 +259,16 @@ var submitFeedback = function() {
 	});
 	// location.reload();
 };
+
+$(function(){
+    var animalType = $('#corgi');
+    if(animalType){
+        $.ajax({
+            url: "https://api.instagram.com/v1/tags/corgi/media/recent?client_id=8dc0503918c3499fad85a99aae177b10",
+            dataType: "jsonp",
+            success: function(data) {
+                animalType.append("<a href='" + data.data[0].link + "'><img src='" + data.data[0].images.low_resolution.url +"'></img></a>");
+            }
+        });
+    }
+});
