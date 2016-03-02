@@ -206,3 +206,11 @@ footer {
     display: inherit;
     margin: 10px;
 }
+
+#page-not-found-wrapper{
+    @extend #form-wrapper;
+}
+
+#page-not-found-area{
+    text-align: center;
+}
