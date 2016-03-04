@@ -261,13 +261,14 @@ var submitFeedback = function() {
 };
 
 $(function(){
-    var animalType = $('#corgi');
+    var animalType = $('#corgi')[0] || $('#cat')[0];
     if(animalType){
+        var animal = animalType.id;
         $.ajax({
-            url: "https://api.instagram.com/v1/tags/corgi/media/recent?client_id=8dc0503918c3499fad85a99aae177b10",
+            url: "https://api.instagram.com/v1/tags/" + animal + "/media/recent?client_id=8dc0503918c3499fad85a99aae177b10",
             dataType: "jsonp",
             success: function(data) {
-                animalType.append("<a href='" + data.data[0].link + "'><img src='" + data.data[0].images.low_resolution.url +"'></img></a>");
+                 $('#'+animal).append("<a href='" + data.data[0].link + "'><img src='" + data.data[0].images.low_resolution.url +"'></img></a>");
             }
         });
     }
