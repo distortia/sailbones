@@ -209,56 +209,43 @@ var genericErrorMessage = function(msg){
 			confirmButtonColor: "#DD6B55",
 			confirmButtonText: "Ok",
 			closeOnConfirm: true
-		}
+		},
+        function(){
+            var clean_uri = location.protocol + "//" + location.host + location.pathname;
+            window.history.replaceState({}, document.title, clean_uri);
+        }
     );
 };
 
-var checkReCaptcha = function(){
-    var formData = $('form').serializeArray();
-    console.log(formData);
-    if(formData[formData.length - 1].name == 'g-recaptcha-response'){
-        $.ajax({
-            type: "POST",
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            url: '/checkReCaptcha', //call controller method instead
-            data: {response:formData[formData.length - 1].value},
-            success: function(response){
-                if(response.error){
-                    genericErrorMessage(response.error);
-                    return;
-                }
-                submitFeedback(response);
-            },
-            error: function(xhr, status, error){
-                genericErrorMessage(xhr.text);
-            }
-        })
-    }
-    
+var genericMessage = function(msg){
+	swal({  title: "Feedback Sent!",
+			text: msg,
+			type: "success",
+			showCancelButton: false,
+            confirmButtonColor: "#AEDEF4",
+			confirmButtonText: "Ok",
+			closeOnConfirm: true
+		},
+        function(){
+            var clean_uri = location.protocol + "//" + location.host + location.pathname;
+            window.history.replaceState({}, document.title, clean_uri);
+        }
+    );
 };
 
-var submitFeedback = function() {
-	$.each(input, function(i){
-		key = $(input[i]); //assigns each div to the variable key
-        var isNumeric = key.hasClass('numeric') ? true : false;
-        var isMultipleChoice = key.hasClass('mulitpleChoice') ? true :false;
-        var ignore = false;
-        if(key.is(':checkbox') || key.is(':radio')){
-            ignore = !key.is(':checked');        
-        }
-        if(!ignore){
-            $.ajax({
-                type: "PUT",
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                url: '/feedback',
-                data: {question:key.attr('name'), answer: key.val(), isNumeric:isNumeric, isMultipleChoice: isMultipleChoice},
-            }).done(
-                setTimeout(function(){
-                    location.replace('/')}, 100));
-        }
-	});
-	// location.reload();
-};
+$(function(){
+    var error = location.search.split('error=')[1];
+    if(error){
+        genericErrorMessage(decodeURI(error));
+    }
+});
+
+$(function(){
+    var thankyou = location.search.split('thankyou=')[1];
+    if(thankyou){
+        genericMessage("Thank you for your feedback, we greatly appreciate it!");
+    }
+})
 
 $(function(){
     var animalType = $('#corgi')[0] || $('#cat')[0];

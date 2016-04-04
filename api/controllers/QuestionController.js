@@ -10,23 +10,43 @@ module.exports = {
     //This saves one question, the submitFeedback function iterates through each input
     //of the feedback form to avoid race conditions when saving
     submitFeedback: function(req, res, next){
-        Question.findOne({question: req.body.question}).exec(function findOneCB(err, found){
-            if(err) unknownErrorLog(err, req, res);
-            if(found){
-                found.answer.push(req.body.answer);
-                found.save(function(error){
-                    if(error) unknownErrorLog(error, req, res);
-                    next();
-                })
-            }
-            else{
-                Question.create({question: req.body.question, answer: req.body.answer, isNumeric: req.body.isNumeric, isMultipleChoice: req.body.isMultipleChoice}).exec(function createdCB(err, newQuestion){
-                    if(err) unknownErrorLog(err, req, res);
-                    next();
-                });
-            }
-                
-        });
+        if(req.body['g-recaptcha-response']){
+            ReCaptcha.checkReCaptcha(req.body['g-recaptcha-response'], function(error, sucess){
+                if(error){
+                    res.redirect('/?error=' + error);
+                }
+                if(sucess){
+                    delete req.body['g-recaptcha-response'];
+                    for(var item in req.body){
+                        (function(question){
+                            var questionSplit = question.split("~~~");
+                            var questionObject = {question: questionSplit[0], answer: req.body[question]};
+                            for(var i = 1; i<questionSplit.length; i++){
+                                questionObject[questionSplit[i]] = true;
+                            }
+                            Question.findOne({question: questionObject.question}).exec(function findOneCB(err, found){
+                                if(err) unknownErrorLog(err, req, res);
+                                if(found){
+                                    found.answer.push(questionObject.answer);
+                                    found.save(function(error){
+                                        if(error) unknownErrorLog(error, req, res);
+                                    })
+                                }
+                                else{
+                                    Question.create(questionObject).exec(function createdCB(err, newQuestion){
+                                        if(err) unknownErrorLog(err, req, res);
+                                    });
+                                }
+                            });
+                        })(item);
+                    }
+                }
+                res.redirect('/?thankyou=thanks');
+            })
+        }
+        else{
+            res.redirect('/feedback?error=Please Enter ReCaptcha');
+        }
     },
     
     //Goes to the feedback data page and sends the feedback data to the view
