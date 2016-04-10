@@ -2,10 +2,6 @@
     display: flex;
     justify-content: center;
 }
-#form-card {
-    @extend .contact-us-form;
-    padding: 25px 45px 50px 45px;
-}
 #feedback-data-wrapper {
     display: flex;
     flex-direction: column;
