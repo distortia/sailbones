@@ -1,216 +1,29 @@
-h1 {
-  text-align: center;
-}
-#main-wrapper {
-  background-image: url('/images/background.jpg');
-  background-size: cover;
-
-}
-#main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  height: 100vh;
-  background-color: rgba(0,0,0,0.5);
-
-  h1, h4{
-    color: white;
-  }
-
-  h4, button {
-    align-self: center;
-  }
-}
-
-
-.process-box {
-  background: $brand-primary;
-  min-height: 50vh;
-  min-width: 90vh;
-  margin: 5vh;
-  display: flex;
-  color: white;
-  border: solid 1px black;
-
-  @media(max-width:900px){
-    flex-direction: column;
-    margin:0;
-    min-height: 0;
-    min-width: 0;
-  }
-}
-
-.column {
-  //background: lightcoral;
-  max-width: 220px;
-  min-width: 220px;
-  border-right: solid 1px black;
-  //Flex child attributes
-  flex-grow: 1;
-  //flex box attributes
-  display: flex;
-  flex-direction:column;
-  //child elements
-  .plan, .build, .analyze {
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    flex-direction: column;
-    //background: lime;
-    flex-grow: 1;
-    &:hover {
-      background: $brand-tertiary;
-    }
-    &:active {
-      background: $brand-secondary;
-    }
-    h3{
-      text-align: center;
-    }
-  }
-  .plan, .build {
-    border-bottom: solid 1px black;
-  }
-  .active {
-    background: $brand-tertiary;
-  }
-
-  //.column media queries
-  @media(max-width:900px){
-    flex-direction: row;
-    max-width: 0;
-    min-width: 100vw;
-
-    .plan, .build {
-      border-right: solid 1px black;
-    }
-
-    .analyze {
-      border-bottom: solid 1px black;
-    }
-  }
-}
-
-.column-2 {
-  //background: red;
-  //flex child attributes
-  flex-grow: 1;
-  //flex box attributes
-  display:flex;
-  flex-direction:column;
-  justify-content: space-around;
-
-  //child elements
-  h4, p{
-    //background: lightgreen;
-    text-align: center;
-  }
-
-  .build-header{
-    align-self:flex-start;
-  }
-
-  .tool-list {
-    display: flex;
-    flex-direction: row;
-    div {
-      img{
-        height: 120px;
-        width: 120px;
-      }
-      text-align: center;
-      flex-grow: 1;
-    }
-  }
-}
-
-#contact-us{
-  display: flex;
-  flex-direction:column;
-}
-.contact-us-top {
-  align-self: center;
-  text-align: center;
-}
-#word {
-  text-transform: uppercase;
-}
-#contact-us-bottom-section {
-  display:flex;
-  flex-wrap: wrap-reverse;
-  justify-content: center;
-  align-items: stretch;
-}
-.contact-us-form {
-  display: flex;
-  flex-direction: column;
-
-}
-.contact-us-left-side {
-  margin-right: 10vw;
-  @media(max-width:600px){
-    margin-right: 0;
-  }
-}
-.contact-us-right-side {
-  display: flex;
-  flex-direction: column;
-}
-.icon-set {
-  padding:0;
-  list-style-type: none;
-  display: flex;
-  justify-content: space-around;
-}
-.gmaps {
-
-}
-.material-icons {
-  font-size: 36px;
-}
-.gitlab-icon {
-  max-height: 48px;
-  max-width: 48px;
-}
-
-footer {
-  margin-top:5vh;
-  min-height:5vh;
-}
-
-#form-wrapper{
+#form-wrapper {
     display: flex;
     justify-content: center;
 }
-
-#form-card{
+#form-card {
     @extend .contact-us-form;
     padding: 25px 45px 50px 45px;
 }
-
-#feedback-data-wrapper{
+#feedback-data-wrapper {
     display: flex;
     flex-direction: column;
 }
-
-#response-wrapper{
+#response-wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: center;
 }
-
-.response{    
+.response {
     display: inherit;
     margin: 10px;
 }
-
-#page-not-found-wrapper{
+#page-not-found-wrapper {
     @extend #form-wrapper;
 }
-
-#page-not-found-area{
+#page-not-found-area {
     text-align: center;
 }

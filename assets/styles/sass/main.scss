@@ -1,9 +1,29 @@
 // Main Sass file
 @import "vendor/normalize";
+
+// Uncomment whichever vendor you want to use
+
+//Bourbon/Neat/Bitters
 //@import "vendor/bourbon/bourbon";
 //@import "vendor/neat/neat";
 //@import "vendor/base/base";
+
+//Material Design Lite
 //@import "vendor/mdl/material-design-lite";
+
+//Bulma
+//@import "vendor/bulma/utilities/utilities";
+//@import "vendor/bulma/config/variables";
+//@import "vendor/bulma/config/generated-variables";
+//@import "vendor/bulma/base/base";
+//@import "vendor/bulma/elements/elements";
+//@import "vendor/bulma/components/components";
+//@import "vendor/bulma/layout/layout";
+
+//Bootstrap
+//@import "~bootstrap-sass"
+
+//Our Sass files
 @import "base/base";
 @import "components/components";
 
